@@ -17,19 +17,14 @@
 package com.example.owl.buildsrc
 
 object Versions {
-    const val ktlint = "0.43.2"
+    const val ktlint = "0.45.2"
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.3"
-
-    object Accompanist {
-        const val version = "0.22.1-rc"
-        const val insets = "com.google.accompanist:accompanist-insets:$version"
-    }
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.2.1"
 
     object Kotlin {
-        private const val version = "1.6.10"
+        private const val version = "1.6.21"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$version"
@@ -49,7 +44,7 @@ object Libs {
 
     object AndroidX {
         const val coreKtx = "androidx.core:core-ktx:1.7.0"
-        const val navigation = "androidx.navigation:navigation-compose:2.4.0"
+        const val navigation = "androidx.navigation:navigation-compose:2.4.2"
 
         object Activity {
             const val activityCompose = "androidx.activity:activity-compose:1.4.0"
@@ -57,7 +52,7 @@ object Libs {
 
         object Compose {
             const val snapshot = ""
-            const val version = "1.1.0-rc03"
+            const val version = "1.2.0-rc02"
 
             const val animation = "androidx.compose.animation:animation:$version"
             const val foundation = "androidx.compose.foundation:foundation:$version"
@@ -75,7 +70,7 @@ object Libs {
 
         object ConstraintLayout {
             const val constraintLayoutCompose =
-                "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02"
+                "androidx.constraintlayout:constraintlayout-compose:1.0.0"
         }
 
         object Test {
@@ -87,12 +82,10 @@ object Libs {
                 private const val version = "1.1.2"
                 const val junit = "androidx.test.ext:junit-ktx:$version"
             }
-
-            const val espressoCore = "androidx.test.espresso:espresso-core:3.3.0"
         }
     }
 
     object Coil {
-        const val coilCompose = "io.coil-kt:coil-compose:1.4.0"
+        const val coilCompose = "io.coil-kt:coil-compose:2.0.0"
     }
 }

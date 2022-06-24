@@ -17,21 +17,20 @@
 package com.example.jetcaster.buildsrc
 
 object Versions {
-    const val ktlint = "0.43.2"
+    const val ktlint = "0.45.2"
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.1.0"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.2.1"
     const val jdkDesugar = "com.android.tools:desugar_jdk_libs:1.1.5"
 
     object Accompanist {
-        const val version = "0.22.1-rc"
-        const val insets = "com.google.accompanist:accompanist-insets:$version"
+        const val version = "0.24.12-rc"
         const val pager = "com.google.accompanist:accompanist-pager:$version"
     }
 
     object Kotlin {
-        private const val version = "1.6.10"
+        private const val version = "1.6.21"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$version"
@@ -66,12 +65,12 @@ object Libs {
         }
 
         object Constraint {
-            const val constraintLayoutCompose = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02"
+            const val constraintLayoutCompose = "androidx.constraintlayout:constraintlayout-compose:1.0.0"
         }
 
         object Compose {
             const val snapshot = ""
-            const val version = "1.1.0-rc03"
+            const val version = "1.2.0-rc02"
 
             @get:JvmStatic
             val snapshotUrl: String
@@ -90,14 +89,14 @@ object Libs {
         }
 
         object Lifecycle {
-            private const val version = "2.4.0"
+            private const val version = "2.4.1"
             const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
             const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         }
 
         object Navigation {
-            const val navigation = "androidx.navigation:navigation-compose:2.4.0"
+            const val navigation = "androidx.navigation:navigation-compose:2.4.2"
         }
 
         object Test {
@@ -114,7 +113,7 @@ object Libs {
         }
 
         object Room {
-            private const val version = "2.4.0"
+            private const val version = "2.4.2"
             const val runtime = "androidx.room:room-runtime:${version}"
             const val ktx = "androidx.room:room-ktx:${version}"
             const val compiler = "androidx.room:room-compiler:${version}"
@@ -132,6 +131,6 @@ object Libs {
     }
 
     object Coil {
-        const val coilCompose = "io.coil-kt:coil-compose:1.4.0"
+        const val coilCompose = "io.coil-kt:coil-compose:2.0.0"
     }
 }

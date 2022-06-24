@@ -21,20 +21,15 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-}
-
-// Reads the Google maps key that is used in the AndroidManifest
-Properties properties = new Properties()
-if (rootProject.file("local.properties").exists()) {
-    properties.load(rootProject.file("local.properties").newDataInputStream())
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     defaultConfig {
         applicationId "androidx.compose.samples.crane"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -45,8 +40,6 @@ android {
                 arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
             }
         }
-
-        manifestPlaceholders = [ googleMapsKey : properties.getProperty("google.maps.key", "") ]
     }
 
     signingConfigs {
@@ -63,14 +56,21 @@ android {
         debug {
             signingConfig signingConfigs.debug
         }
+        benchmark {
+            signingConfig signingConfigs.debug
+            matchingFallbacks = ['release']
+            debuggable false
+        }
 
         release {
             minifyEnabled true
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -91,7 +91,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion '1.1.0-rc02' // For Kotlin 1.6.10. Revert with rc03
+        kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
     }
 
     packagingOptions {
@@ -106,7 +106,7 @@ dependencies {
     implementation Libs.Kotlin.stdlib
     implementation Libs.Kotlin.Coroutines.android
     implementation Libs.GoogleMaps.maps
-    implementation Libs.GoogleMaps.mapsKtx
+    implementation Libs.GoogleMaps.composeMaps
     constraints {
         // Volley is a transitive dependency of maps
         implementation(Libs.Volley.volley) {
@@ -114,13 +114,15 @@ dependencies {
         }
     }
 
-    implementation Libs.Accompanist.insets
+    coreLibraryDesugaring Libs.coreLibraryDesugar
     implementation Libs.AndroidX.Activity.activityCompose
+    implementation Libs.AndroidX.Lifecycle.navigation
     implementation Libs.AndroidX.appcompat
     implementation Libs.AndroidX.Compose.runtime
     implementation Libs.AndroidX.Compose.runtimeLivedata
     implementation Libs.AndroidX.Compose.foundation
     implementation Libs.AndroidX.Compose.material
+    implementation Libs.AndroidX.Compose.materialWindow
     implementation Libs.AndroidX.Compose.layout
     implementation Libs.AndroidX.Compose.animation
     implementation Libs.AndroidX.Compose.toolingPreview
@@ -129,6 +131,7 @@ dependencies {
 
     implementation Libs.AndroidX.Lifecycle.viewModelKtx
     implementation Libs.Hilt.android
+    implementation Libs.Hilt.navigation
     kapt Libs.Hilt.compiler
 
     implementation Libs.Coil.coilCompose
@@ -146,4 +149,8 @@ dependencies {
     androidTestImplementation Libs.Hilt.android
     androidTestImplementation Libs.Hilt.testing
     kaptAndroidTest Libs.Hilt.compiler
+}
+
+secrets {
+    defaultPropertiesFileName 'local.defaults.properties'
 }
